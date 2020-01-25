@@ -195,6 +195,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5135362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &54191613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716111664439686, guid: d95dfe9eeea7731489064565a2d8b306,
+    type: 3}
+  m_PrefabInstance: {fileID: 330439810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &54191614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54191613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3882709bd19ad254784e9ba0b3f6be3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticText: {fileID: 821218640}
+  timer: {fileID: 2042268883}
 --- !u!1 &68643141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,6 +2170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829f63cb67ba5594e8244478713df28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staticText: {fileID: 821218640}
+  timer: {fileID: 2042268883}
+  gameTime: 300
 --- !u!82 &1734473720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2701,7 +2724,7 @@ GameObject:
   - component: {fileID: 2042268884}
   - component: {fileID: 2042268883}
   m_Layer: 5
-  m_Name: Static Laptop Text (1)
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
