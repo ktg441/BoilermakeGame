@@ -19,6 +19,7 @@ public class StartGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Game started");
         startTimer = false;
         min = 0f;
         sec = 0f;
@@ -27,6 +28,7 @@ public class StartGame : MonoBehaviour
         flick = GetComponent<AudioSource>();
         flick.time = flick.clip.length * .25f;
         lamp = GameObject.Find("Lamp");
+        lamp.GetComponent<Light>().intensity = 0;
         Invoke("TurnOn", 5f);
     }
 
@@ -51,6 +53,7 @@ public class StartGame : MonoBehaviour
 
     void TurnOn()
     {
+        Debug.Log("Light turned on");
         lamp.GetComponent<Light>().intensity = 5;
         flick.Play();
         staticText.enabled = true;
