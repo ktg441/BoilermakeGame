@@ -95,8 +95,9 @@ public class ClientHandler extends Thread {
             System.out.println("into runvr");
             while (true) {
 		while (currentAnswer == null) currentThread().yield();
-		String clueEncoding = currentAnswer.split(":") + ":" + getRandomColor();
-                writeToStream(outputStream, currentAnswer.split(":")[0] + ":" + getRandomColor());
+		String clueEncoding = currentAnswer.split(":")[0] + ":" + (String) getRandomColor();
+                writeToStream(outputStream, clueEncoding);
+                System.out.printf("Sending: %s%n", clueEncoding);
                 //writeToStream(outputStream, currentAnswer);
                 String response = readFromStream(inputStream);
 		System.out.printf("Received from VR: %s%n", response);
@@ -110,7 +111,7 @@ public class ClientHandler extends Thread {
                 } else {
                     writeToStream(outputStream, "incorrect");
                 }
-		//System.out.println(readFromStream(inputStream));
+		System.out.println(readFromStream(inputStream));
 		VRAnswered = true;
             }
         } catch (IOException e) {
