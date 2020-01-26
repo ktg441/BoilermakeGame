@@ -69,15 +69,17 @@ public class InitialServerConnect : MonoBehaviour
                         {
                             if (length > 3) //RIP PC BUDDY :(
                             {
-                                if(string.Compare(serverMessage, "correct") == 0)
-                                {
-                                    Debug.Log("Correct action!");
-                                    scripter.incrementWinCount();
-                                }
-                                else if(string.Compare(serverMessage, "incorrect") == 0)
+                                if(serverMessage.Contains("incorrect"))
                                 {
                                     Debug.Log("Nooo incorrect action!");
+                                    //SendMessage("Hey Laptop Buddy Incorrect");
                                     scripter.resetWinCount();
+                                }
+                                else if(serverMessage.Contains("correct"))
+                                {
+                                    Debug.Log("Correct action!");
+                                    //SendMessage("Hey Laptop Buddy Correct");
+                                    scripter.incrementWinCount();
                                 }
                                 else
                                 {

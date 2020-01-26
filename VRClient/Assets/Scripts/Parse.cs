@@ -15,22 +15,37 @@ public class Parse : MonoBehaviour
     public Text staticText;
     public Text timer;
 
+    public InitialServerConnect server;
+
+    public AudioSource winMe;
+    private bool won;
+
     // Start is called before the first frame update
     void Start()
     {
+        won = false;
         display.text = "";
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (string.Compare(newMessage, "") != 0)
+        if (won)
+        {
+            winMe.Play();
+            display.enabled = false;
+            timer.enabled = false;
+            staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
+        }
+        else if (string.Compare(newMessage, "") != 0)
         {
             Debug.Log("New message is " + newMessage + " \nLength: " + newMessage.Length.ToString());
             string toParse = newMessage;
             ParseData(toParse);
             newMessage = "";
         }
+        
+
     }
 
     public void ParseData(string msg)
@@ -62,9 +77,8 @@ public class Parse : MonoBehaviour
         numCorrect++;
         if (numCorrect == 3)
         {
-            GetComponent<AudioSource>().Play();
-            timer.text = "";
-            staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
+            won = true;
+            //server.SendMessage("I won!~");
         }
     }
 
