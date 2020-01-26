@@ -110,7 +110,7 @@ public class ClientHandler extends Thread {
                 } else {
                     writeToStream(outputStream, "incorrect");
                 }
-		System.out.println(readFromStream(inputStream));
+		//System.out.println(readFromStream(inputStream));
 		VRAnswered = true;
             }
         } catch (IOException e) {

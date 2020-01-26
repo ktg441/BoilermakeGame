@@ -26,4 +26,22 @@ cooperation or risk hastening the most irritating of inconveniences by using the
 </li>
 <li> Backend Server:
     <ul> Concurrent server written in Java </ul>
+</li>
+</ul>
+
+#### Instructions:
+VR Player:  
+  
+**tl;dr:** Tell the PC player the color of the font displayed on the monitor. Then press the button they tell you
+
+  1. A color will display on the monitor. Tell the PC player the color **of the font**
+  2. The PC player will use that information to tell you what physical interface to use
+  3. When you press the button the monitor will change, repeat 1-2
+  4. If you successfully interact with three correct interfaces in a row you win. If time runs out on your update, you
+  lose.
+  
+  PC Player:
     
+  While a seemingly less glorious role, you're the brains of this operation--the VR player is just your monkey to
+  command. In a more complete version of the game, the puzzles you need to solve would be more challenging.
+  
