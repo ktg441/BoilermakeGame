@@ -4271,7 +4271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticText: {fileID: 821218640}
   timer: {fileID: 2042268883}
-  gameTime: 60
+  gameTime: 45
 --- !u!82 &1734473720
 AudioSource:
   m_ObjectHideFlags: 0
