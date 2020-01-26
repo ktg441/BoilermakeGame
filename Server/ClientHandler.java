@@ -14,6 +14,7 @@ public class ClientHandler extends Thread {
     static boolean VRConnected = false;
     static boolean PCConnected = false;
     static boolean debug = false;
+    static boolean VRAnswered = false;
 
     public ClientHandler(DataOutputStream output, DataInputStream input, Socket skt) {
         outputStream = output;
@@ -77,16 +78,11 @@ public class ClientHandler extends Thread {
         try {
             System.out.println("into runpc");
             while (true) {
+		VRAnswered = false;
                 String [] options = generatePCAnswers();
                 writeToStream(outputStream, String.format("%s %s %s %s",
                         options[0], options[1], options[2], options[3]));
-                String response = readFromStream(inputStream);
-                if (response.equals(currentAnswer)) {
-                    //VRAnswered = true;
-                    writeToStream(outputStream, "correct");
-                } else {
-                    writeToStream(outputStream, "incorrect");
-                }
+		while (!VRAnswered) currentThread().yield();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,8 +94,13 @@ public class ClientHandler extends Thread {
         try {
             System.out.println("into runvr");
             while (true) {
+		while (currentAnswer == null) currentThread().yield();
+		String clueEncoding = currentAnswer.split(":") + ":" + getRandomColor();
+                System.out.printf("Sending %s%n", clueEncoding);
+                writeToStream(outputStream, currentAnswer.split(":")[0] + ":" + getRandomColor());
                 //writeToStream(outputStream, currentAnswer);
                 String response = readFromStream(inputStream);
+		System.out.printf("Received from VR: %s%n", response);
                 if (currentAnswer == null){
                     System.out.println("This is the case");
                     currentThread().yield();
@@ -110,6 +111,8 @@ public class ClientHandler extends Thread {
                 } else {
                     writeToStream(outputStream, "incorrect");
                 }
+		System.out.println(readFromStream(inputStream));
+		VRAnswered = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,6 +126,7 @@ public class ClientHandler extends Thread {
             if (i == 0) d.writeByte(' ');
             d.writeByte(bytes[i]);
         }
+	d.flush();
     }
 
     public String readFromStream(DataInputStream d) throws IOException {
@@ -132,9 +136,7 @@ public class ClientHandler extends Thread {
             byte readByte = d.readByte();
             if (readByte == '~') break;
             s += (char) readByte;
-            System.out.println((char) readByte);
         }
-        System.out.println(s);
         return s;
     }
 
@@ -159,5 +161,14 @@ public class ClientHandler extends Thread {
         currentAnswer = returnArray[correctIndex];
         System.out.printf("Correct Answer is %s%n", currentAnswer);
         return returnArray;
+    }
+    public String getRandomColor(){
+        System.out.println("In getRandomColor");
+        Random r = new Random();
+        String otherColor;
+        if (currentAnswer == null) return "null";
+        String currentColor = currentAnswer.split(":")[0];
+        while ((otherColor = colors[r.nextInt(colors.length)]).equals(currentColor)){System.out.println("Spinning");}
+        return otherColor;
     }
 }
