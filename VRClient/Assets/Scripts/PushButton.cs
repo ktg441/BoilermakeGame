@@ -26,7 +26,7 @@ public class PushButton : MonoBehaviour
         float distance = Mathf.Abs(transform.position.x - startPos.x);
         if (distance >= pressLength)
         {
-            Debug.Log("Actively pressing");
+            //Debug.Log("Actively pressing");
             // Prevent the button from going past the pressLength
             transform.position = new Vector3(transform.position.x, startPos.y - pressLength, transform.position.z);
             if (!pressed)
@@ -52,5 +52,7 @@ public class PushButton : MonoBehaviour
     {
         Debug.Log("Button pressed");
         GetComponent<AudioSource>().Play();
+        GameObject.Find("OVRPlayerController").GetComponent<InitialServerConnect>().SendMessage();
+        Debug.Log("Message sent from button");
     }
 }
