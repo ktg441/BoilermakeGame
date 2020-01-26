@@ -11,6 +11,8 @@ public class InitialServerConnect : MonoBehaviour
     private TcpClient socketConnection;
     private Thread clientReceiveThread;
 
+    public Parse scripter;
+
     // Use this for initialization 	
     void Start()
     {
@@ -55,6 +57,34 @@ public class InitialServerConnect : MonoBehaviour
                         // Convert byte array to string message. 						
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
                         Debug.Log("server message received as: " + serverMessage);
+                        if (string.Compare(serverMessage, "Who are you") == 0)
+                        {
+                            SendMessage("VR~");
+                        }
+                        else if (string.Compare(serverMessage, "You are connected. Waiting for PC Player...") == 0)
+                        {
+                            Debug.Log("Waiting for PC");//Display waiting message
+                        }
+                        else
+                        {
+                            if (length > 3) //RIP PC BUDDY :(
+                            {
+                                if(string.Compare(serverMessage, "correct") == 0)
+                                {
+                                    Debug.Log("Correct action!");
+                                    scripter.incrementWinCount();
+                                }
+                                else if(string.Compare(serverMessage, "incorrect") == 0)
+                                {
+                                    Debug.Log("Nooo incorrect action!");
+                                    scripter.resetWinCount();
+                                }
+                                else
+                                {
+                                    scripter.newMessage = serverMessage;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -66,7 +96,7 @@ public class InitialServerConnect : MonoBehaviour
     }
 
     // Send message to server using socket connection. 		
-    public void SendMessage()
+    public void SendMessage(string clientMessage)
     {
         if (socketConnection == null)
         {
@@ -78,7 +108,7 @@ public class InitialServerConnect : MonoBehaviour
             NetworkStream stream = socketConnection.GetStream();
             if (stream.CanWrite)
             {
-                string clientMessage = "VR~";
+                //tring clientMessage = "VR~";
                 // Convert string message to byte array.                 
                 byte[] clientMessageAsByteArray = Encoding.UTF8.GetBytes(clientMessage);
                 // Write byte array to socketConnection stream.                 

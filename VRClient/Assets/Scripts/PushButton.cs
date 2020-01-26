@@ -10,11 +10,14 @@ public class PushButton : MonoBehaviour
     public bool pressed;
     public ButtonEvent downEvent;
 
+    private InitialServerConnect server;
+
     Vector3 startPos;
     Rigidbody rb;
 
     void Start()
     {
+        server = GameObject.Find("OVRPlayerController").GetComponent<InitialServerConnect>();
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
     }
@@ -52,7 +55,8 @@ public class PushButton : MonoBehaviour
     {
         Debug.Log("Button pressed");
         GetComponent<AudioSource>().Play();
-        GameObject.Find("OVRPlayerController").GetComponent<InitialServerConnect>().SendMessage();
-        Debug.Log("Message sent from button");
+        server.SendMessage("action0~");
+        //GameObject.Find("OVRPlayerController").GetComponent<InitialServerConnect>().SendMessage();
+        //Debug.Log("Message sent from button");
     }
 }

@@ -42,10 +42,12 @@ public class StartGame : MonoBehaviour
             sec = gameTime % 60;
             timer.text = string.Format("{0:0}:{1:00}", min, sec);
 
-            if (gameTime == 0f)
+            if (gameTime < 0f)
             {
                 startTimer = false;
-                //win condition
+                GameObject.Find("Floor").GetComponent<AudioSource>().Play();
+                timer.enabled = false;
+                staticText.text = "Windows is updating...\n(You failed)";
             }
         }
         
