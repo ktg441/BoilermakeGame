@@ -96,7 +96,6 @@ public class ClientHandler extends Thread {
             while (true) {
 		while (currentAnswer == null) currentThread().yield();
 		String clueEncoding = currentAnswer.split(":") + ":" + getRandomColor();
-                System.out.printf("Sending %s%n", clueEncoding);
                 writeToStream(outputStream, currentAnswer.split(":")[0] + ":" + getRandomColor());
                 //writeToStream(outputStream, currentAnswer);
                 String response = readFromStream(inputStream);
@@ -105,7 +104,7 @@ public class ClientHandler extends Thread {
                     System.out.println("This is the case");
                     currentThread().yield();
                 }
-                if (response.equals(currentAnswer)) {
+                if (response.equals(currentAnswer.split(":")[1])) {
                     //VRAnswered = true;
                     writeToStream(outputStream, "correct");
                 } else {
@@ -163,12 +162,11 @@ public class ClientHandler extends Thread {
         return returnArray;
     }
     public String getRandomColor(){
-        System.out.println("In getRandomColor");
         Random r = new Random();
         String otherColor;
         if (currentAnswer == null) return "null";
         String currentColor = currentAnswer.split(":")[0];
-        while ((otherColor = colors[r.nextInt(colors.length)]).equals(currentColor)){System.out.println("Spinning");}
+        while ((otherColor = colors[r.nextInt(colors.length)]).equals(currentColor)){}
         return otherColor;
     }
 }
