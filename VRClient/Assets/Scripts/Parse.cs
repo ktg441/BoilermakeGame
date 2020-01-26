@@ -15,15 +15,31 @@ public class Parse : MonoBehaviour
     public Text staticText;
     public Text timer;
 
+    public InitialServerConnect server;
+
+    private bool won;
+
+    public GameObject win;
+
     // Start is called before the first frame update
     void Start()
     {
+        win = GameObject.Find("Win Condition");
+        win.SetActive(false);
+        won = false;
         display.text = "";
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (won)
+        {
+            win.SetActive(true);
+            display.enabled = false;
+            timer.enabled = false;
+            staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
+        }
         if (string.Compare(newMessage, "") != 0)
         {
             Debug.Log("New message is " + newMessage + " \nLength: " + newMessage.Length.ToString());
@@ -31,6 +47,8 @@ public class Parse : MonoBehaviour
             ParseData(toParse);
             newMessage = "";
         }
+        
+
     }
 
     public void ParseData(string msg)
@@ -62,9 +80,8 @@ public class Parse : MonoBehaviour
         numCorrect++;
         if (numCorrect == 3)
         {
-            GetComponent<AudioSource>().Play();
-            timer.text = "";
-            staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
+            won = true;
+            //server.SendMessage("I won.");
         }
     }
 
