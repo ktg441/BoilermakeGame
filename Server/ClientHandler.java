@@ -52,8 +52,7 @@ public class ClientHandler extends Thread {
                 if (!debug && PCConnected && VRConnected) runPC();
                 else{
                     writeToStream(outputStream, "You are connected. Waiting for VR Player...");
-                    while (!VRConnected){}
-                    System.out.println("this should not be running");
+                    while (!VRConnected){yield();}
                     runPC();
                 }
             }
@@ -62,7 +61,7 @@ public class ClientHandler extends Thread {
                 if (!debug && PCConnected && VRConnected) runVR();
                 else{
                     writeToStream(outputStream, "You are connected. Waiting for PC Player...");
-                    while (!PCConnected){}
+                    while (!PCConnected){yield();}
                     runVR();
                 }
             }
@@ -101,6 +100,10 @@ public class ClientHandler extends Thread {
             while (true) {
                 //writeToStream(outputStream, currentAnswer);
                 String response = readFromStream(inputStream);
+                if (currentAnswer == null){
+                    System.out.println("This is the case");
+                    currentThread().yield();
+                }
                 if (response.equals(currentAnswer)) {
                     //VRAnswered = true;
                     writeToStream(outputStream, "correct");
