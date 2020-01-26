@@ -13,6 +13,7 @@ public class InitialServerConnect : MonoBehaviour
 
     public Parse scripter;
 
+
     // Use this for initialization 	
     void Start()
     {

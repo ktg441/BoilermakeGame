@@ -17,12 +17,15 @@ public class Parse : MonoBehaviour
 
     public InitialServerConnect server;
 
-    public AudioSource winMe;
     private bool won;
+
+    public GameObject win;
 
     // Start is called before the first frame update
     void Start()
     {
+        win = GameObject.Find("Win Condition");
+        win.SetActive(false);
         won = false;
         display.text = "";
     }
@@ -32,7 +35,7 @@ public class Parse : MonoBehaviour
     {
         if (won)
         {
-            winMe.Play();
+            win.SetActive(true);
             display.enabled = false;
             timer.enabled = false;
             staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
@@ -78,7 +81,7 @@ public class Parse : MonoBehaviour
         if (numCorrect == 3)
         {
             won = true;
-            //server.SendMessage("I won!~");
+            //server.SendMessage("I won.");
         }
     }
 
