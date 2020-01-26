@@ -14,7 +14,7 @@ public class Parse : MonoBehaviour
 
     private GameObject mainCam;
 
-    private string[] options = { "Button", "Slider", "Wheel", "Lever" };
+    private string[] options = { "Red Button", "Green Button", "Blue Button", "Yellow Button" };
 
     public string newMessage = "";
 

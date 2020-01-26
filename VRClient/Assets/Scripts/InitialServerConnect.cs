@@ -58,9 +58,10 @@ public class InitialServerConnect : MonoBehaviour
                         // Convert byte array to string message. 						
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
                         Debug.Log("server message received as: " + serverMessage);
-                        if (string.Compare(serverMessage, "Who are you") == 0)
+                        //if (string.Compare(serverMessage, "Who are you") == 0)
+                        if (serverMessage.Contains("are you"))
                         {
-                            SendMessage("VR~");
+                            SendMessages("VR~");
                         }
                         else if (string.Compare(serverMessage, "You are connected. Waiting for PC Player...") == 0)
                         {
@@ -73,18 +74,18 @@ public class InitialServerConnect : MonoBehaviour
                                 if(serverMessage.Contains("incorrect"))
                                 {
                                     Debug.Log("Nooo incorrect action!");
-                                    //SendMessage("Hey Laptop Buddy Incorrect");
+                                    SendMessages("Hey Laptop Buddy Incorrect");
                                     scripter.resetWinCount();
                                 }
                                 else if(serverMessage.Contains("correct"))
                                 {
                                     Debug.Log("Correct action!");
-                                    //SendMessage("Hey Laptop Buddy Correct");
+                                    SendMessages("Hey Laptop Buddy Correct");
                                     scripter.incrementWinCount();
                                 }
                                 else
                                 {
-                                    scripter.newMessage = serverMessage;
+                                    scripter.newMessage = serverMessage.Trim();
                                 }
                             }
                         }
@@ -99,7 +100,7 @@ public class InitialServerConnect : MonoBehaviour
     }
 
     // Send message to server using socket connection. 		
-    public void SendMessage(string clientMessage)
+    public void SendMessages(string clientMessage)
     {
         if (socketConnection == null)
         {

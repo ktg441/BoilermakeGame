@@ -789,6 +789,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.0416517
       objectReference: {fileID: 0}
+    - target: {fileID: 23499532813632046, guid: 254a47017e5cf734aa1546bfdfc0cfdf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f60193514df66d4ca22d32afd3ec702, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254a47017e5cf734aa1546bfdfc0cfdf, type: 3}
 --- !u!1 &189768603
@@ -1848,7 +1853,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.40224034, y: 1.9151585, z: -4.1596274}
   serializedVersion: 2
   m_Spring: 100
-  m_Damper: 20
+  m_Damper: 15
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 1.00000005e-20
@@ -2384,7 +2389,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.56593657, y: 1.924195, z: -3.338369}
   serializedVersion: 2
   m_Spring: 100
-  m_Damper: 20
+  m_Damper: 15
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 1.00000005e-20
@@ -3652,6 +3657,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.143133
       objectReference: {fileID: 0}
+    - target: {fileID: 23499532813632046, guid: 254a47017e5cf734aa1546bfdfc0cfdf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 58cb0b70b0e0d6643824497ff9333e87, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254a47017e5cf734aa1546bfdfc0cfdf, type: 3}
 --- !u!1 &1458890898
@@ -4496,7 +4506,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.5659365, y: 1.924195, z: -3.338369}
   serializedVersion: 2
   m_Spring: 100
-  m_Damper: 20
+  m_Damper: 15
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 1.00000005e-20
@@ -5385,6 +5395,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.1431327
       objectReference: {fileID: 0}
+    - target: {fileID: 23499532813632046, guid: 254a47017e5cf734aa1546bfdfc0cfdf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc8b45802ad0f124c9b94a9921fadf02, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254a47017e5cf734aa1546bfdfc0cfdf, type: 3}
 --- !u!1 &2104883852 stripped
@@ -5429,7 +5444,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.58824044, y: 1.9161584, z: -3.278627}
   serializedVersion: 2
   m_Spring: 100
-  m_Damper: 20
+  m_Damper: 15
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 1.00000005e-20

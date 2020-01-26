@@ -40,7 +40,7 @@ public class Parse : MonoBehaviour
             timer.enabled = false;
             staticText.text = "Congratulations!\nYou have upgraded your computer to Linux!";
         }
-        else if (string.Compare(newMessage, "") != 0)
+        if (string.Compare(newMessage, "") != 0)
         {
             Debug.Log("New message is " + newMessage + " \nLength: " + newMessage.Length.ToString());
             string toParse = newMessage;

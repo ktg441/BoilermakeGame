@@ -79,14 +79,15 @@ public class PushButton : MonoBehaviour
     {
         Debug.Log("Button pressed");
         GetComponent<AudioSource>().Play();
-        server.SendMessage(name);
-        //StartCoroutine(PingServer(name, waiting));
+        server.SendMessages(name);
+
+        //StartCoroutine(PingServer());
     }
 
-    public IEnumerator PingServer(string name, float waiting)
+    public IEnumerator PingServer()
     {
-        server.SendMessage(name);
-        yield return new WaitForSeconds(3f * waiting);
+        server.SendMessages("Finish Message");
+        yield return new WaitForSeconds(0.1f);
     }
 
     //GameObject.Find("OVRPlayerController").GetComponent<InitialServerConnect>().SendMessage();
