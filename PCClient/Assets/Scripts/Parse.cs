@@ -51,19 +51,19 @@ public class Parse : MonoBehaviour
             {
                 case 0:
                     ButtonA.GetComponent<Image>().color = new Color(float.Parse(hex[0]), float.Parse(hex[1]), float.Parse(hex[2]));
-                    ButtonA.transform.Find("Text").GetComponent<Text>().text = action;
+                    ButtonA.transform.Find("Text").GetComponent<Text>().text = options[System.Int32.Parse(action.Substring(action.Length-1))];
                     break;
                 case 1:
                     ButtonB.GetComponent<Image>().color = new Color(float.Parse(hex[0]), float.Parse(hex[1]), float.Parse(hex[2]));
-                    ButtonB.transform.Find("Text").GetComponent<Text>().text = action;
+                    ButtonB.transform.Find("Text").GetComponent<Text>().text = options[System.Int32.Parse(action.Substring(action.Length - 1))];
                     break;
                 case 2:
                     ButtonC.GetComponent<Image>().color = new Color(float.Parse(hex[0]), float.Parse(hex[1]), float.Parse(hex[2]));
-                    ButtonC.transform.Find("Text").GetComponent<Text>().text = action;
+                    ButtonC.transform.Find("Text").GetComponent<Text>().text = options[System.Int32.Parse(action.Substring(action.Length - 1))];
                     break;
                 case 3:
                     ButtonD.GetComponent<Image>().color = new Color(float.Parse(hex[0]), float.Parse(hex[1]), float.Parse(hex[2]));
-                    ButtonD.transform.Find("Text").GetComponent<Text>().text = action;
+                    ButtonD.transform.Find("Text").GetComponent<Text>().text = options[System.Int32.Parse(action.Substring(action.Length - 1))];
                     break;
             }
 
